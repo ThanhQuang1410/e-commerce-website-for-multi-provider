@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [![Build Status](https://travis-ci.org/magento/magento2.svg?branch=2.3-develop)](https://travis-ci.org/magento/magento2)
 [![Open Source Helpers](https://www.codetriage.com/magento/magento2/badges/users.svg)](https://www.codetriage.com/magento/magento2)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/magento/magento2?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
@@ -72,3 +73,7 @@ Please see LICENSE.txt for the full text of the OSL 3.0 license or contact licen
 Subject to Licensee's payment of fees and compliance with the terms and conditions of the MEE License, the MEE License supersedes the OSL 3.0 license for each source file.
 Please see LICENSE_EE.txt for the full text of the MEE License or visit http://magento.com/legal/terms/enterprise.
 
+=======
+# e-commerce-website-for-multi-provider
+E - Commerce base on Magento
+>>>>>>> 3b01cfbf7d2c21e184ed9fe63abce349228f2228
