@@ -1,0 +1,56 @@
+<?php
+/**
+ * Copyright © 2015 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ *
+ * Magenest_Xero extension
+ * NOTICE OF LICENSE
+ *
+ * @category  Magenest
+ * @package   Magenest_Salesforce
+ * @author ThaoPV
+ */
+?>
+<div class="actions button-container">
+    <!--    <a href="--><?php ///* @escapeNotVerified */ echo $block->escapeUrl($block->getButtonUrl()) ?><!--">-->
+    <button  class="button action-configure"
+             type="button"
+             data-role="<?php /* @escapeNotVerified */ echo $block->getHtmlId() ?>"
+             id="<?php /* @escapeNotVerified */ echo $block->getHtmlId() ?>">
+        <span><?php /* @escapeNotVerified */ echo $block->escapeHtml($block->getButtonLabel()) ?></span>
+    </button>
+    <!--    </a>-->
+</div>
+<script>
+    require([
+        'jquery',
+        'Magento_Ui/js/modal/alert'
+    ], function($, modalAlert){
+        'use strict';
+        var buttonDataRole = $('#<?php /* @escapeNotVerified */ echo $block->getHtmlId() ?>');
+        buttonDataRole.click(function(){
+            $.ajax({
+                type: "GET",
+                url: '<?php /* @escapeNotVerified */ echo $block->escapeUrl($block->getButtonUrl()) ?>',
+                data: [],
+                showLoader: true,
+                success: function (response) {
+                    console.log(response);
+                    modalAlert({
+                        content: response.message,
+                        title: '<?php /* @escapeNotVerified */ echo $block->escapeHtml($block->getButtonLabel()) ?>'
+                    });
+                },
+                error: function (response) {
+                    console.log(response);
+                    modalAlert({
+                        content: 'Something went wrong with Ajax request, please refresh your browser',
+                        title: '<?php /* @escapeNotVerified */ echo $block->escapeHtml($block->getButtonLabel()) ?>'
+                    });
+                }
+            });
+
+        });
+    });
+</script>

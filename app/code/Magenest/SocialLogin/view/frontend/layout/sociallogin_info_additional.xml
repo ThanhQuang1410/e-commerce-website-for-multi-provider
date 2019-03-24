@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Additional Information</title>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magenest\SocialLogin\Block\SocialNetwork\AdditionalInfo" name="additional_info"
+                   template="Magenest_SocialLogin::additional.phtml" cacheable="false">
+                <container name="form.additional.info" as="form_additional_info"/>
+                <container name="customer.form.register.fields.before" as="form_fields_before" label="Form Fields Before" htmlTag="div" htmlClass="customer-form-before"/>
+            </block>
+            <referenceBlock name="catalog.compare.sidebar" remove="true" />
+            <referenceContainer name="sidebar.additional" remove="true" />
+        </referenceContainer>
+    </body>
+</page>

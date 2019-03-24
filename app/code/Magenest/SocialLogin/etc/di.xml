@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Config\Block\System\Config\Form\Field">
+        <plugin name="sociallogin_form_field_attribute_plugin" type="Magenest\SocialLogin\Plugin\System\Config\FormFieldPlugin" sortOrder="0"/>
+    </type>
+    <!--<type name="Magento\Customer\Controller\Account\Login">-->
+        <!--<plugin name="sociallogin_check_login" type="Magenest\SocialLogin\Plugin\Controller\Account\CheckLogin" sortOrder="0"/>-->
+    <!--</type>-->
+</config>

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Magenest_SocialLogin::css/style.css" />
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magenest\SocialLogin\Block\PopupModal\LoginButton" name="login_button" template="popupmodal/login_button.phtml">
+            </block>
+            <block class="Magenest\SocialLogin\Block\PopupModal\ModalContent" name="login_modal" template="popupmodal/modal_content.phtml">
+                <arguments>
+                    <argument name="jsLayout" xsi:type="array">
+                        <item name="components" xsi:type="array">
+                            <item name="modal_content" xsi:type="array">
+                                <item name="component" xsi:type="string">Magenest_SocialLogin/js/view/modal</item>
+                                <item name="displayArea" xsi:type="string">modal_content</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <referenceBlock name="authentication-popup" template="Magento_Customer::account/authentication-popup.phtml">
+                <arguments>
+                    <argument name="jsLayout" xsi:type="array">
+                        <item name="components" xsi:type="array">
+                            <item name="authenticationPopup" xsi:type="array">
+                                <item name="component" xsi:type="string">Magenest_SocialLogin/js/view/authentication-popup</item>
+                                <item name="displayArea" xsi:type="string">authentication-popup</item>
+                                <item name="children" xsi:type="array">
+                                    <item name="messages" xsi:type="array">
+                                        <item name="component" xsi:type="string">Magento_Ui/js/view/messages</item>
+                                        <item name="displayArea" xsi:type="string">messages</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </referenceBlock>
+
+        </referenceContainer>
+    </body>
+</page>

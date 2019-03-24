@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Magenest_SocialLogin::css/style.css" />
+        <css src="Magenest_SocialLogin::css/magnific-popup.css" />
+
+    </head>
+    <body>
+        <referenceBlock name="product.info.details" >
+            <block class="Magenest\SocialLogin\Block\Comment" name="comments.tab" as="comments"
+                   template="comment.phtml" group="detailed_info">
+                <arguments>
+                    <argument translate="true" name="title" xsi:type="string">Comments</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+        <referenceContainer name="product.info.main">
+            <block class="Magenest\SocialLogin\Block\Share" name="magenest_sociallogin_share" template="share.phtml"/>
+            <block class="Magenest\SocialLogin\Block\Like" name="magenest_sociallogin_like" template="like.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

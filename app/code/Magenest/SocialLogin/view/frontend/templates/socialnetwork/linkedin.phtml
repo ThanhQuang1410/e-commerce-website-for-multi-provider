@@ -1,0 +1,21 @@
+<?php if($block->isLinkedinEnabled()): ?>
+    <div class="modal-linkedin linkedin_button_connect">
+    </div>
+<?php endif;?>
+
+
+<script>
+    require(['jquery','magenestSocialLogin'],
+        function($,sociallogin){
+            $(document).ready(function () {
+                $('.linkedin_button_connect').bind('click',function(){
+                    var url = '<?PHP echo $block->getButtonUrl();?>';
+                    if (url.length) {
+                        sociallogin.display(url, 'Linkedin', 600, 600);
+                    }
+                });
+            })
+        })
+
+</script>
+

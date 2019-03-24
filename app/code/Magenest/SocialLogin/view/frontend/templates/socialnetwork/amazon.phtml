@@ -1,0 +1,19 @@
+<?php if($block->isAmazonEnabled()): ?>
+    <div class="modal-amazon amazon_button_connect">
+    </div>
+<?php endif;?>
+
+<script>
+    require(['jquery','magenestSocialLogin'],
+        function($,sociallogin){
+            $(document).ready(function () {
+                $('.amazon_button_connect').bind('click',function(){
+                    var url = '<?PHP echo $block->getButtonUrl();?>';
+                    if (url.length) {
+                        sociallogin.display(url, 'Amazon', 600, 600);
+                    }
+                });
+            })
+        })
+
+</script>

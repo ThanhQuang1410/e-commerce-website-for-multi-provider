@@ -1,0 +1,43 @@
+<?php if ($block->isShareEnabled()):
+    /** @var  $socialShare */
+    $socialShare = $block->getSocialShare();
+    if (count($socialShare) > 0):
+        ?>
+        <div>
+        <span class="share" style="font-weight: bold; font-size: 15px">
+        <?php echo __('Share this on your social network'); ?>
+        </span>
+            <script>
+                require([
+                    'jquery',
+                    'hideshare'
+                ], function ($) {
+                    'use strict';
+                    $(".product-info-main .share").hideshare({
+                        link: document.URL,
+                        title: "",
+                        media: "",
+                        decription: "",
+                        product_url: "<?= $block->getProductUrlForZalo() ?>",
+                        zalo_data_id: "<?= $block->getZaloDataId() ?>",
+                        twitter: <?php echo isset($socialShare['twitter']) ? "true" : "false"; ?>,
+                        facebook: <?php echo isset($socialShare['facebook']) ? "true" : "false"; ?>,
+                        googleplus: <?php echo isset($socialShare['google']) ? "true" : "false"; ?>,
+                        linkedin: <?php echo isset($socialShare['linkedin']) ? "true" : "false"; ?>,
+                        pinterest: <?php echo isset($socialShare['pinterest']) ? "true" : "false"; ?>,
+                        reddit: <?php echo isset($socialShare['reddit']) ? "true" : "false"; ?>,
+                        zalo: <?php echo isset($socialShare['zalo']) ? "true" : "false"; ?>,
+                        position: "bottom",
+                        speed: 50
+                    });
+
+                    require([
+                        'Magenest_SocialLogin/js/zalo-sdk'
+                    ], function (sdk) {
+                    });
+
+                });
+            </script>
+        </div>
+    <?php endif;
+endif; ?>

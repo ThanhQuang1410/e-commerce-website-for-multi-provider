@@ -1,0 +1,589 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="magenest" translate="label" sortOrder="200">
+            <label>Magenest</label>
+        </tab>
+        <section id="magenest" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="0"
+                 showInStore="0">
+            <class>separator-top</class>
+            <label>Social Login</label>
+            <tab>magenest</tab>
+            <resource>Magenest_SocialLogin::config_sociallogin</resource>
+
+            <group id="credentials" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0"
+                   showInStore="0">
+                <label>Credentials</label>
+
+                <group id="google" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0"
+                       showInStore="0">
+
+                    <label>Google+</label>
+                    <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1"
+                           showInWebsite="0" showInStore="0">
+                        <label>Enable</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="client_id" translate="label" type="text" sortOrder="10" showInDefault="1"
+                           showInWebsite="0"
+                           showInStore="0">
+                        <label>Client ID</label>
+                        <validate>required-entry</validate>
+                        <depends>
+                            <field id="enabled">1</field>
+                        </depends>
+                    </field>
+                    <field id="client_secret" translate="label" type="text" sortOrder="20" showInDefault="1"
+                           showInWebsite="0" showInStore="0">
+                        <label>Client Secret</label>
+                        <validate>required-entry</validate>
+                        <depends>
+                            <field id="enabled">1</field>
+                        </depends>
+                    </field>
+                    <field id="redirect_uri" translate="label" type="text" sortOrder="20" showInDefault="1"
+                           showInWebsite="0" showInStore="0">
+                        <label>Redirect Uri</label>
+                        <frontend_model>Magenest\SocialLogin\Model\Config\Config</frontend_model>
+                        <depends>
+                            <field id="enabled">1</field>
+                        </depends>
+                        <attribute type="readonly">readonly</attribute>
+                    </field>
+                </group>
+
+                <group id="facebook" translate="label" type="text" sortOrder="20" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>Facebook</label>
+                    <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1"
+                           showInWebsite="0"
+                           showInStore="0">
+                        <label>Enable</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="client_id" translate="label" type="text" sortOrder="20" showInDefault="1"
+                           showInWebsite="0"
+                           showInStore="0">
+                        <label>Facebook App ID</label>
+                        <validate>required-entry</validate>
+                        <depends>
+                            <field id="enabled">1</field>
+                        </depends>
+                    </field>
+                    <field id="client_secret" translate="label" type="text" sortOrder="30" showInDefault="1"
+                           showInWebsite="0" showInStore="0">
+                        <label>Facebook App Secret</label>
+                        <validate>required-entry</validate>
+                        <depends>
+                            <field id="enabled">1</field>
+                        </depends>
+                    </field>
+                    <field id="redirect_uri" translate="label" type="text" sortOrder="30" showInDefault="1"
+                           showInWebsite="0" showInStore="0">
+                        <label>Redirect Uri</label>
+                        <frontend_model>Magenest\SocialLogin\Model\Config\Config</frontend_model>
+                        <depends>
+                            <field id="enabled">1</field>
+                        </depends>
+                        <attribute type="readonly">readonly</attribute>
+                    </field>
+                </group>
+
+                <!--<group id="zalo" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0"-->
+                       <!--showInStore="0">-->
+                    <!--<label>Zalo</label>-->
+                    <!--<field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Enable</label>-->
+                        <!--<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+                    <!--</field>-->
+                    <!--<field id="client_id" translate="label" type="text" sortOrder="10" showInDefault="1"-->
+                           <!--showInWebsite="0"-->
+                           <!--showInStore="0">-->
+                        <!--<label>App ID</label>-->
+                        <!--<validate>required-entry</validate>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                    <!--</field>-->
+                    <!--<field id="client_secret" translate="label" type="text" sortOrder="20" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>App Secret</label>-->
+                        <!--<validate>required-entry</validate>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                    <!--</field>-->
+                    <!--<field id="redirect_uri" translate="label" type="text" sortOrder="20" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Redirect Uri</label>-->
+                        <!--<frontend_model>Magenest\SocialLogin\Model\Config\Config</frontend_model>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                        <!--<attribute type="readonly">readonly</attribute>-->
+                    <!--</field>-->
+                <!--</group>-->
+
+                <!--<group id="kakao" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0"-->
+                       <!--showInStore="0">-->
+                    <!--<label>Kakao Talk</label>-->
+                    <!--<field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Enable</label>-->
+                        <!--<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+                    <!--</field>-->
+                    <!--<field id="app_key" translate="label" type="text" sortOrder="10" showInDefault="1"-->
+                           <!--showInWebsite="0"-->
+                           <!--showInStore="0">-->
+                        <!--<label>App Key</label>-->
+                        <!--<validate>required-entry</validate>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                    <!--</field>-->
+                    <!--<field id="rest_api_key" translate="label" type="text" sortOrder="20" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>REST API Key</label>-->
+                        <!--<validate>required-entry</validate>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                    <!--</field>-->
+                    <!--<field id="java_script_key" translate="label" type="text" sortOrder="25" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>JavaScript Key</label>-->
+                        <!--<validate>required-entry</validate>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                    <!--</field>-->
+                    <!--<field id="admin_key" translate="label" type="text" sortOrder="28" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Admin_key</label>-->
+                        <!--<validate>required-entry</validate>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                    <!--</field>-->
+                    <!--<field id="redirect_uri" translate="label" type="text" sortOrder="30" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Redirect Uri</label>-->
+                        <!--<frontend_model>Magenest\SocialLogin\Model\Config\Config</frontend_model>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                        <!--<attribute type="readonly">readonly</attribute>-->
+                    <!--</field>-->
+                <!--</group>-->
+
+                <!--<group id="wechat" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0"-->
+                       <!--showInStore="0">-->
+                    <!--<label>Wechat</label>-->
+                    <!--<field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Enable</label>-->
+                        <!--<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+                    <!--</field>-->
+                    <!--<field id="type" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">-->
+                        <!--<label>Type Official Account</label>-->
+                        <!--<config_path>smsmarketing/wechat/type</config_path>-->
+                        <!--<source_model>Magenest\SocialLogin\Model\Config\Source\TypeOffcialAccount</source_model>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                    <!--</field>-->
+                    <!--<field id="app_id" translate="label" type="text" sortOrder="10" showInDefault="1"-->
+                           <!--showInWebsite="0"-->
+                           <!--showInStore="0">-->
+                        <!--<label>App Id</label>-->
+                        <!--<validate>required-entry</validate>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                    <!--</field>-->
+                    <!--<field id="app_secret" translate="label" type="text" sortOrder="20" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>API Secret</label>-->
+                        <!--<validate>required-entry</validate>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                    <!--</field>-->
+                    <!--<field id="redirect_uri" translate="label" type="text" sortOrder="30" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Redirect Uri</label>-->
+                        <!--<frontend_model>Magenest\SocialLogin\Model\Config\Config</frontend_model>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                        <!--<attribute type="readonly">readonly</attribute>-->
+                    <!--</field>-->
+                <!--</group>-->
+
+                <!--<group id="viber" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0"-->
+                       <!--showInStore="0">-->
+                    <!--<label>Viber</label>-->
+                    <!--<field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Enable</label>-->
+                        <!--<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+                    <!--</field>-->
+                    <!--<field id="token" translate="label" type="text" sortOrder="10" showInDefault="1"-->
+                           <!--showInWebsite="0"-->
+                           <!--showInStore="0">-->
+                        <!--<label>Token</label>-->
+                        <!--<validate>required-entry</validate>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                    <!--</field>-->
+                    <!--<field id="show_public_account" translate="label" type="select" sortOrder="10" showInDefault="1"-->
+                           <!--showInWebsite="0"-->
+                           <!--showInStore="0">-->
+                        <!--<label>Show Public Account</label>-->
+                        <!--<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                    <!--</field>-->
+                    <!--<field id="sync_button" translate="button_label" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">-->
+                        <!--<frontend_model>Magenest\SocialLogin\Block\System\Config\Form\Button</frontend_model>-->
+                        <!--<button_label>Setup Webhook</button_label>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                        <!--<attribute type="button_url">sociallogin/viber/webhook</attribute>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                        <!--<comment><![CDATA[<strong style="color:dodgerblue">Notice:</strong> Make sure that your site has SSL on]]></comment>-->
+                    <!--</field>-->
+                    <!--<field id="redirect_uri" translate="label" type="text" sortOrder="30" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Redirect Uri</label>-->
+                        <!--<frontend_model>Magenest\SocialLogin\Model\Config\Config</frontend_model>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                        <!--<attribute type="readonly">readonly</attribute>-->
+                    <!--</field>-->
+                <!--</group>-->
+
+                <!--<group id="twitter" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0"-->
+                       <!--showInStore="0">-->
+
+                    <!--<label>Twitter</label>-->
+                    <!--<field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Enable</label>-->
+                        <!--<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+                    <!--</field>-->
+                    <!--<field id="client_id" translate="label" type="text" sortOrder="10" showInDefault="1"-->
+                           <!--showInWebsite="0"-->
+                           <!--showInStore="0">-->
+                        <!--<label>Client ID</label>-->
+                        <!--<validate>required-entry</validate>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                    <!--</field>-->
+                    <!--<field id="client_secret" translate="label" type="text" sortOrder="20" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Client Secret</label>-->
+                        <!--<validate>required-entry</validate>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                    <!--</field>-->
+                    <!--<field id="redirect_uri" translate="label" type="text" sortOrder="20" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Redirect Uri</label>-->
+                        <!--<frontend_model>Magenest\SocialLogin\Model\Config\Config</frontend_model>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                        <!--<attribute type="readonly">readonly</attribute>-->
+                    <!--</field>-->
+                <!--</group>-->
+
+                <!--<group id="instagram" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="0"-->
+                       <!--showInStore="0">-->
+
+                    <!--<label>Instagram</label>-->
+                    <!--<field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Enable</label>-->
+                        <!--<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+                    <!--</field>-->
+                    <!--<field id="client_id" translate="label" type="text" sortOrder="10" showInDefault="1"-->
+                           <!--showInWebsite="0"-->
+                           <!--showInStore="0">-->
+                        <!--<label>Client ID</label>-->
+                        <!--<validate>required-entry</validate>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                    <!--</field>-->
+                    <!--<field id="client_secret" translate="label" type="text" sortOrder="20" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Client Secret</label>-->
+                        <!--<validate>required-entry</validate>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                    <!--</field>-->
+                    <!--<field id="redirect_uri" translate="label" type="text" sortOrder="20" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Redirect Uri</label>-->
+                        <!--<frontend_model>Magenest\SocialLogin\Model\Config\Config</frontend_model>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                        <!--<attribute type="readonly">readonly</attribute>-->
+                    <!--</field>-->
+                <!--</group>-->
+
+                <!--<group id="linkedin" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="0"-->
+                       <!--showInStore="0">-->
+
+                    <!--<label>Linkedin</label>-->
+                    <!--<field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Enable</label>-->
+                        <!--<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+                    <!--</field>-->
+                    <!--<field id="client_id" translate="label" type="text" sortOrder="10" showInDefault="1"-->
+                           <!--showInWebsite="0"-->
+                           <!--showInStore="0">-->
+                        <!--<label>Client ID</label>-->
+                        <!--<validate>required-entry</validate>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                    <!--</field>-->
+                    <!--<field id="client_secret" translate="label" type="text" sortOrder="20" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Client Secret</label>-->
+                        <!--<validate>required-entry</validate>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                    <!--</field>-->
+                    <!--<field id="redirect_uri" translate="label" type="text" sortOrder="20" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Redirect Uri</label>-->
+                        <!--<frontend_model>Magenest\SocialLogin\Model\Config\Config</frontend_model>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                        <!--<attribute type="readonly">readonly</attribute>-->
+                    <!--</field>-->
+                <!--</group>-->
+
+                <!--<group id="pinterest" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="0"-->
+                       <!--showInStore="0">-->
+                    <!--<label>Pinterest</label>-->
+                    <!--<field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Enable</label>-->
+                        <!--<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+                    <!--</field>-->
+                    <!--<field id="client_id" translate="label" type="text" sortOrder="10" showInDefault="1"-->
+                           <!--showInWebsite="0"-->
+                           <!--showInStore="0">-->
+                        <!--<label>Client ID</label>-->
+                        <!--<validate>required-entry</validate>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                    <!--</field>-->
+                    <!--<field id="client_secret" translate="label" type="text" sortOrder="20" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Client Secret</label>-->
+                        <!--<validate>required-entry</validate>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                    <!--</field>-->
+                    <!--<field id="redirect_uri" translate="label" type="text" sortOrder="20" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Redirect Uri</label>-->
+                        <!--<frontend_model>Magenest\SocialLogin\Model\Config\Config</frontend_model>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                        <!--<attribute type="readonly">readonly</attribute>-->
+                    <!--</field>-->
+                <!--</group>-->
+
+                <!--<group id="line" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="0"-->
+                       <!--showInStore="0">-->
+
+                    <!--<label>Line</label>-->
+                    <!--<field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Enable</label>-->
+                        <!--<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+                    <!--</field>-->
+                    <!--<field id="client_id" translate="label" type="text" sortOrder="10" showInDefault="1"-->
+                           <!--showInWebsite="0"-->
+                           <!--showInStore="0">-->
+                        <!--<label>Client ID</label>-->
+                        <!--<validate>required-entry</validate>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                    <!--</field>-->
+                    <!--<field id="client_secret" translate="label" type="text" sortOrder="20" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Client Secret</label>-->
+                        <!--<validate>required-entry</validate>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                    <!--</field>-->
+                    <!--<field id="redirect_uri" translate="label" type="text" sortOrder="20" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Redirect Uri</label>-->
+                        <!--<frontend_model>Magenest\SocialLogin\Model\Config\Config</frontend_model>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                        <!--<attribute type="readonly">readonly</attribute>-->
+                    <!--</field>-->
+                <!--</group>-->
+
+                <!--<group id="reddit" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="0"-->
+                       <!--showInStore="0">-->
+
+                    <!--<label>Reddit</label>-->
+                    <!--<field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Enable</label>-->
+                        <!--<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+                    <!--</field>-->
+                    <!--<field id="client_id" translate="label" type="text" sortOrder="10" showInDefault="1"-->
+                           <!--showInWebsite="0"-->
+                           <!--showInStore="0">-->
+                        <!--<label>Client ID</label>-->
+                        <!--<validate>required-entry</validate>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                    <!--</field>-->
+                    <!--<field id="client_secret" translate="label" type="text" sortOrder="20" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Client Secret</label>-->
+                        <!--<validate>required-entry</validate>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                    <!--</field>-->
+                    <!--<field id="redirect_uri" translate="label" type="text" sortOrder="20" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Redirect Uri</label>-->
+                        <!--<frontend_model>Magenest\SocialLogin\Model\Config\Config</frontend_model>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                        <!--<attribute type="readonly">readonly</attribute>-->
+                    <!--</field>-->
+                <!--</group>-->
+
+                <!--<group id="amazon" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="0"-->
+                       <!--showInStore="0">-->
+
+                    <!--<label>Amazon</label>-->
+                    <!--<field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Enable</label>-->
+                        <!--<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+                    <!--</field>-->
+                    <!--<field id="client_id" translate="label" type="text" sortOrder="10" showInDefault="1"-->
+                           <!--showInWebsite="0"-->
+                           <!--showInStore="0">-->
+                        <!--<label>Client ID</label>-->
+                        <!--<validate>required-entry</validate>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                    <!--</field>-->
+                    <!--<field id="client_secret" translate="label" type="text" sortOrder="20" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Client Secret</label>-->
+                        <!--<validate>required-entry</validate>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                    <!--</field>-->
+                    <!--<field id="redirect_uri" translate="label" type="text" sortOrder="20" showInDefault="1"-->
+                           <!--showInWebsite="0" showInStore="0">-->
+                        <!--<label>Redirect Uri</label>-->
+                        <!--<frontend_model>Magenest\SocialLogin\Model\Config\Config</frontend_model>-->
+                        <!--<depends>-->
+                            <!--<field id="enabled">1</field>-->
+                        <!--</depends>-->
+                        <!--<attribute type="readonly">readonly</attribute>-->
+                    <!--</field>-->
+                <!--</group>-->
+
+            </group>
+
+            <group id="general" translate="label" type="text" sortOrder="0" showInDefault="1" showInStore="0"
+                   showInWebsite="0">
+                <label>General Setting</label>
+
+                <field id="enabled_social_enabled_modal" translate="label comment" type="select"
+                       sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable Popup</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enabled_social_enabled_create_account" translate="label comment" type="select"
+                       sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable In Create Account</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="enabled_social_enabled_checkout" translate="label comment" type="select"
+                       sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable In Checkout</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enabled_social_enabled_comment_product" translate="label comment" type="select"
+                       sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable In Comment Product</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enabled_share" translate="label comment" type="select" sortOrder="50" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>Enable Social Share</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="select_social_share" translate="label" type="multiselect" sortOrder="60" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>Social Share options</label>
+                    <source_model>Magenest\SocialLogin\Model\Config\SocialShare</source_model>
+                    <depends>
+                        <field id="enabled_share">1</field>
+                    </depends>
+                </field>
+                <field id="enabled_like" translate="label comment" type="select" sortOrder="70" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>Enable Social Like</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="select_social_like" translate="label" type="multiselect" sortOrder="80" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>Social Like options</label>
+                    <source_model>Magenest\SocialLogin\Model\Config\SocialShare</source_model>
+                    <depends>
+                        <field id="enabled_like">1</field>
+                    </depends>
+                </field>
+            </group>
+
+        </section>
+    </system>
+</config>

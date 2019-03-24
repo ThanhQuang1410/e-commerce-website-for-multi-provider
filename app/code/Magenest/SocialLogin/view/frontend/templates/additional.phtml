@@ -1,0 +1,250 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+$zalo = \Magento\Framework\App\ObjectManager::getInstance()->get('Magenest\SmsMarketing\Helper\DataConfig');
+$zaloOaId = $zalo->getZaloOAId();
+
+?>
+<?php
+/**
+ * Create account form template
+ *
+ * @var $block \Magento\Customer\Block\Form\Register
+ */
+?>
+<?= $block->getChildHtml('form_fields_before') ?>
+<?php /* Extensions placeholder */ ?>
+<?= $block->getChildHtml('customer.form.register.extra') ?>
+<?php
+    $block->getUserData();
+    $block->clearUserData();
+    /** @var Magenest\AdvancedLogin\Model\ConfigProvider $configProvider */
+    $configProvider = \Magento\Framework\App\ObjectManager::getInstance()->create('Magenest\AdvancedLogin\Model\ConfigProvider')
+?>
+<form class="form create account form-create-account" action="<?= /* @escapeNotVerified */ $block->getPostActionUrl() ?>" method="post" id="form-validate" enctype="multipart/form-data" autocomplete="off">
+    <?= /* @noEscape */ $block->getChildHtml('form_fields_before_in_form') ?>
+    <?= /* @noEscape */ $block->getBlockHtml('formkey'); ?>
+    <fieldset class="fieldset create info">
+        <legend class="legend"><span><?= /* @escapeNotVerified */ __('Personal Information') ?></span></legend><br>
+        <input type="hidden" name="success_url" value="<?= /* @escapeNotVerified */ $block->getSuccessUrl() ?>"/>
+        <input type="hidden" name="error_url" value="<?= /* @escapeNotVerified */ $block->getErrorUrl() ?>"/>
+        <input type="hidden" name="magenest_sociallogin_type" value="<?= /* @escapeNotVerified */ $block->getSocialLoginType() ?>"/>
+        <input type="hidden" name="magenest_sociallogin_id" value="<?= /* @escapeNotVerified */ $block->getSocialLoginId() ?>"/>
+
+        <div class="field field-name-firstname required">
+            <label class="label" for="firstname">
+                <span><?= __('First Name') ?></span>
+            </label>
+            <div class="control">
+                <input type="text" id="firstname" name="firstname" value="<?= $block->getFirstName() ?>"
+                       title="<?= __('First Name') ?>" class="input-text required-entry"
+                       data-validate="{required:true}" autocomplete="off" aria-required="true"
+                       readonly="readonly"
+                >
+            </div>
+        </div>
+        <div class="field field-name-lastname required">
+            <label class="label" for="lastname">
+                <span><?= __('Last Name') ?></span>
+            </label>
+            <div class="control">
+                <input type="text" id="lastname" name="lastname" value="<?= $block->getLastName() ?>"
+                       title="<?= __('Last Name') ?>" class="input-text required-entry" data-validate="{required:true}"
+                       autocomplete="off" aria-required="true"
+                       readonly="readonly"
+                >
+            </div>
+        </div>
+        <div class="field required">
+            <label for="email_address" class="label">
+                <span><?= /* @escapeNotVerified */ __('Email') ?></span>
+            </label>
+            <div class="control">
+                <input type="email" name="email" id="email_address" autocomplete="email"
+                       value="<?= $block->getEmail() ?>"
+                       title="<?= /* @escapeNotVerified */ __('Email') ?>" class="input-text"
+                       data-validate="{required:true, 'validate-email':true}"
+                       readonly="readonly"
+                />
+            </div>
+        </div>
+
+        <?php if ($block->isNewsletterEnabled()): ?>
+            <div class="field choice newsletter">
+                <input type="checkbox" name="is_subscribed" title="<?= /* @escapeNotVerified */ __('Sign Up for Newsletter') ?>" value="1" id="is_subscribed"<?php if ($block->getFormData()->getIsSubscribed()): ?> checked="checked"<?php endif; ?> class="checkbox"/>
+                <label for="is_subscribed" class="label"><span><?= /* @escapeNotVerified */ __('Sign Up for Newsletter') ?></span></label>
+            </div>
+            <?php /* Extensions placeholder */ ?>
+            <?= $block->getChildHtml('customer.form.register.newsletter') ?>
+        <?php endif ?>
+    </fieldset>
+
+    <fieldset class="fieldset create account" data-hasrequired="<?= /* @escapeNotVerified */ __('* Required Fields') ?>">
+        <legend class="legend"><span><?= /* @escapeNotVerified */ __('Additional Sign-in Information') ?></span></legend><br>
+        <?php if($configProvider->isUsernameLoginEnable()): ?>
+        <div class="field required">
+            <label for="username" class="label"><span><?= $block->escapeHtml(__('Username')) ?></span></label>
+            <div class="control">
+                <input type="text"
+                       name="username"
+                       id="username"
+                       value="<?= $block->escapeHtml($block->getFormData()->getUsername()) ?>"
+                       title="<?= $block->escapeHtmlAttr(__('Username')) ?>"
+                       class="input-text required"
+                       data-validate="{required:true, 'username-validate': true}"
+                       autofocus
+                >
+            </div>
+        </div>
+        <?php endif; ?>
+        <div class="field">
+            <label for="telephone" class="label"><span><?= $block->escapeHtml(__('Telephone')) ?></span>
+            </label>
+            <div class="control">
+                <input type="text"
+                       name="telephone"
+                       id="telephone"
+                       value="<?= $block->escapeHtml($block->getFormData()->getTelephone()) ?>"
+                       title="<?= $block->escapeHtmlAttr(__('Telephone')) ?>"
+                       class="input-text"
+                       data-validate="{'phone-validate': true}"
+                >
+            </div>
+        </div>
+        <div class="field field-sms_subscription_status">
+            <label class="label" for="sms_subscription_status"><span><?= $block->escapeHtml(__('Sms subscription status')) ?></span></label>
+            <div class="control">
+                <select id="sms_subscription_status" name="sms_subscription_status">
+                    <option value="1" selected="selected">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+        </div>
+        <div class="field password required">
+            <label for="password" class="label"><span><?= /* @escapeNotVerified */ __('Password') ?></span></label>
+            <div class="control">
+                <input type="password" name="password" id="password"
+                       title="<?= /* @escapeNotVerified */ __('Password') ?>"
+                       class="input-text"
+                       data-password-min-length="<?= $block->escapeHtml($block->getMinimumPasswordLength()) ?>"
+                       data-password-min-character-sets="<?= $block->escapeHtml($block->getRequiredCharacterClassesNumber()) ?>"
+                       data-validate="{required:true, 'validate-customer-password':true}"
+                       autocomplete="off">
+                <div id="password-strength-meter-container" data-role="password-strength-meter" aria-live="polite">
+                    <div id="password-strength-meter" class="password-strength-meter">
+                        <?= /* @escapeNotVerified */ __('Password Strength') ?>:
+                        <span id="password-strength-meter-label" data-role="password-strength-meter-label">
+                            <?= /* @escapeNotVerified */ __('No Password') ?>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field confirmation required">
+            <label for="password-confirmation" class="label"><span><?= /* @escapeNotVerified */ __('Confirm Password') ?></span></label>
+            <div class="control">
+                <input type="password" name="password_confirmation" title="<?= /* @escapeNotVerified */ __('Confirm Password') ?>" id="password-confirmation" class="input-text" data-validate="{required:true, equalTo:'#password'}"/>
+            </div>
+        </div>
+
+        <?php if($zaloOaId) : ?>
+            <div class="field">
+                <label class="label"><span><?= /* @escapeNotVerified */ __('Please follow the official account Zalo(Receipted sms marketing)') ?></span></label>
+                <div class="control">
+                    <div class="zalo-follow-only-button" data-oaid="<?php echo $zaloOaId; ?>"></div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?= $block->getChildHtml('form_additional_info') ?>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action submit primary" title="<?= /* @escapeNotVerified */ __('Create an Account') ?>"><span><?= /* @escapeNotVerified */ __('Create an Account') ?></span></button>
+        </div>
+        <div class="secondary">
+            <a class="action back" href="<?= $block->escapeUrl($block->getBackUrl()) ?>"><span><?= /* @escapeNotVerified */ __('Back') ?></span></a>
+        </div>
+    </div>
+</form>
+<script>
+    require([
+        'jquery',
+        'mage/validation',
+        'mage/translate'
+    ], function ($) {
+        $.validator.addMethod(
+            'phone-validate',
+            function (value) {
+                value = value.trim();
+                $('#telephone').val(value);
+                return value === "" || value.length > 9 && value.match(/^(0|\+84|84)[1-9][0-9]{8,9}$/);
+            },
+            $.mage.__('Please specify a valid phone number')
+        );
+        $.validator.addMethod(
+            'username-validate',
+            function (value) {
+                value = value.trim();
+                $('#username').val(value);
+                return value.length >= 6 && value.length <= 16 && value.match(/^(?=.*[a-zA-Z])([a-zA-Z0-9\-]+)$/);
+            },
+            $.mage.__('User name should be between 8 - 16 characters and only contains letters, numbers and \'-\' character, at least 1 letter.')
+        );
+        $(window).load(function () {
+            <?php
+            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+            $resource = $objectManager->get('\Magento\Framework\App\ResourceConnection');
+            $connection = $resource->getConnection();
+
+            $sql = $connection->select()
+                ->where('attribute_code = ?', 'telephone')
+                ->where('frontend_label = ?','Telephone')
+                ->from('eav_attribute');
+
+            $data = $connection->fetchRow($sql);
+            $isRequired = $data['is_required'];
+            ?>
+            var isRequired = <?php echo $isRequired ?>;
+            if(isRequired == 1){
+                $("#telephone").addClass("required");
+                $("#telephone").parent().parent().addClass("required");
+            }
+            else{
+                $("#telephone").removeClass("required");
+                $("#telephone").parent().parent().removeClass("required");
+            }
+        });
+
+        require([
+            'Magenest_SocialLogin/js/zalo-sdk'
+        ], function (sdk) {
+        });
+    });
+</script>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_CustomerCustomAttributes/validation": {
+                "ignore": 0,
+                "hasUserDefinedAttributes": 0,
+                "isDobEnabled": 0,
+                "disableAutoComplete": true,
+                "mixins": [
+                    "Magento_CustomerCustomAttributes/error-placement",
+                    "Magento_CustomerCustomAttributes/validation-ignore"
+                ]
+            }
+        },
+        ".field.password": {
+            "passwordStrengthIndicator": {
+                "formSelector": "form.form-create-account"
+            }
+        }
+    }
+</script>

@@ -1,0 +1,33 @@
+<?php
+/**
+ * @var $block \Magenest\SocialLogin\Block\PopupModal\LoginButton
+ */
+?>
+<script>
+    require([
+        'jquery',
+        'Magento_Ui/js/modal/modal'
+    ], function ($, modal) {
+        $(document).ready(function () {
+
+            var options = {
+                type: 'popup',
+                modalClass: 'popup-authentication',
+                responsive: true,
+                innerScroll: true,
+                title: '',
+                buttons: []
+            };
+            modal(options, $('#modal_content'));
+
+            <?php $helper = $this->helper('Magenest\SocialLogin\Helper\SocialLogin'); ?>
+
+            <?php if (!$block->isLoggedIn() && $helper->isButtonEnabledModal()):?>
+            $('.header > .links > .authorization-link a').bind('click', function (e) {
+                e.preventDefault();
+                $('#modal_content').modal('openModal');
+            });
+            <?php endif; ?>
+        })
+    })
+</script>

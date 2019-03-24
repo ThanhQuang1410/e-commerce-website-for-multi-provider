@@ -1,0 +1,25 @@
+<script>
+    require([
+        'jquery',
+        'Magento_Customer/js/customer-data'
+    ], function ($, customerData) {
+
+        $(document).ready(function () {
+            var refreshParent = function () {
+                window.opener.location.reload();
+                customerData.invalidate(['customer']);
+                customerData.invalidate(['cart']);
+                window.close();
+            };
+
+            <?php $helper = $this->helper('Magenest\SocialLogin\Helper\SocialLogin'); ?>
+            <?php if($block->isUserLogin()) : ?>
+            refreshParent();
+            <?php else : ?>
+            window.opener.location.href = "<?php echo $block->getSignInUrl(); ?>";
+            window.close();
+            <?php endif; ?>
+        })
+
+    })
+</script>

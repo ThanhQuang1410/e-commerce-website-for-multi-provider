@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Magenest_SocialLogin::css/style.css" />
+        <css src="Magenest_SocialLogin::css/magnific-popup.css" />
+
+    </head>
+    <body>
+        <referenceContainer name="customer.login.container">
+            <block class="Magenest\SocialLogin\Block\Social" name="social_wrapper" template="wrapper/social.phtml">
+                <block class="Magenest\SocialLogin\Block\SocialNetwork\Facebook" name="magenest_facebook_login_button"
+                       template="socialnetwork/facebook.phtml" cacheable="false">
+                </block>
+                <block class="Magenest\SocialLogin\Block\SocialNetwork\Google" name="magenest_google_login_button"
+                       template="socialnetwork/google.phtml" cacheable="false">
+                </block>
+                <!--<block class="Magenest\SocialLogin\Block\SocialNetwork\Amazon" name="magenest_amazon_login_button"-->
+                       <!--template="socialnetwork/amazon.phtml" cacheable="false">-->
+                <!--</block>-->
+                <!--<block class="Magenest\SocialLogin\Block\SocialNetwork\Twitter" name="magenest_twitter_login_button"-->
+                       <!--template="socialnetwork/twitter.phtml" cacheable="false">-->
+                <!--</block>-->
+                <!--<block class="Magenest\SocialLogin\Block\SocialNetwork\Instagram" name="magenest_instagram_login_button"-->
+                       <!--template="socialnetwork/instagram.phtml" cacheable="false">-->
+                <!--</block>-->
+                <!--<block class="Magenest\SocialLogin\Block\SocialNetwork\Linkedin" name="magenest_linkedin_login_button"-->
+                       <!--template="socialnetwork/linkedin.phtml" cacheable="false">-->
+                <!--</block>-->
+                <!--<block class="Magenest\SocialLogin\Block\SocialNetwork\Pinterest" name="magenest_pinterest_login_button"-->
+                       <!--template="socialnetwork/pinterest.phtml" cacheable="false">-->
+                <!--</block>-->
+                <!--<block class="Magenest\SocialLogin\Block\SocialNetwork\Reddit" name="magenest_reddit_login_button"-->
+                       <!--template="socialnetwork/reddit.phtml" cacheable="false">-->
+                <!--</block>-->
+                <!--<block class="Magenest\SocialLogin\Block\SocialNetwork\Line" name="magenest_line_login_button"-->
+                       <!--template="socialnetwork/line.phtml" cacheable="false">-->
+                <!--</block>-->
+                <!--<block class="Magenest\SocialLogin\Block\SocialNetwork\Zalo" name="magenest_zalo_login_button"-->
+                       <!--template="socialnetwork/zalo.phtml" cacheable="false">-->
+                <!--</block>-->
+                <!--<block class="Magenest\SocialLogin\Block\SocialNetwork\Kakao" name="magenest_kakao_login_button"-->
+                       <!--template="socialnetwork/kakao.phtml" cacheable="false">-->
+                <!--</block>-->
+                <!--<block class="Magenest\SocialLogin\Block\SocialNetwork\Wechat" name="magenest_wechat_login_button"-->
+                       <!--template="socialnetwork/wechat.phtml" cacheable="false">-->
+                <!--</block>-->
+            </block>
+        </referenceContainer>
+    </body>
+</page>

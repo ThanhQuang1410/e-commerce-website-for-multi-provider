@@ -1,0 +1,31 @@
+<?php if ($block->isLikeEnabled()):
+    /** @var  $socialShare */
+    $socialLike = $block->getSocialLike();
+    if (count($socialLike) > 0):
+        ?>
+        <div class="social-like">
+        <?php echo __('Like this page'); ?>
+        <div>
+            <?php if(isset($socialLike['facebook'])): ?>
+            <script>(function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=<?=$block->getFacebookAppId()?>";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));</script>
+            <div class="fb-like"
+                 data-href="<?php echo $block->getUrlCurrent(); ?>"
+                 data-layout="standard"
+                 data-action="like">
+            </div>
+            <?php endif; ?>
+            <?php if(isset($socialLike['google'])): ?>
+                <script src="https://apis.google.com/js/platform.js" async defer></script>
+                <g:plusone size="medium"></g:plusone>
+            <?php endif; ?>
+        </div>
+        </div>
+    <?php endif;
+endif; ?>

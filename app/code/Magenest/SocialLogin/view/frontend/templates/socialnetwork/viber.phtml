@@ -1,0 +1,28 @@
+<?php
+/** @var \Magenest\SocialLogin\Block\SocialNetwork\Viber $block */
+if($block->isViberEnabled()): ?>
+    <div class="modal-viber viber_button_connect"></div>
+<?php endif;?>
+
+
+<script>
+    require(['jquery','magenestSocialLogin'],
+        function($,sociallogin){
+            $(document).ready(function () {
+                $('.viber_button_connect').bind('click',function(){
+                    $.ajaxSetup({
+                        headers: { "X-Viber-Auth-Token": "<?= $block->getToken() ?>"}
+                    });
+
+                    $.ajax({
+                        url: "https://chatapi.viber.com/pa/get_account_info"
+                    });
+                    var url = '<?PHP echo $block->getButtonUrl();?>';
+                    if (url.length) {
+                        sociallogin.display(url, 'Viber', 600, 600);
+                    }
+                });
+            })
+        })
+
+</script>

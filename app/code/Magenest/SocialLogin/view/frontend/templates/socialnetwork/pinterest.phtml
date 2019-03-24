@@ -1,0 +1,21 @@
+<?php if($block->isPinterestEnabled()): ?>
+        <div class="modal-pinterest pinterest_button_connect">
+        </div>
+<?php endif;?>
+
+
+<script>
+    require(['jquery','magenestSocialLogin'],
+        function($,sociallogin){
+            $(document).ready(function () {
+                $('.pinterest_button_connect').bind('click',function(){
+                    var url = '<?PHP echo $block->getButtonUrl();?>';
+                    if (url.length) {
+                        sociallogin.display(url, 'Pinterest', 600, 600);
+                    }
+                });
+            })
+        })
+
+</script>
+

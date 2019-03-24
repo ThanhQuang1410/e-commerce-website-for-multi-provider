@@ -1,0 +1,129 @@
+<!--ko if: isEnabledPopup-->
+<div class="block-authentication"
+     data-bind="afterRender: setModalElement, blockLoader: isLoading">
+    <div class="block block-customer-login"
+         data-bind="attr: {'data-label': $t('or')}">
+        <div class="block-title">
+            <strong role="heading"
+                    aria-level="2"
+                    data-bind="i18n: 'Sign In using your account', attr: {id: prefixElementHtml + 'block-customer-login-heading'}"
+            ></strong>
+        </div>
+        <!-- ko foreach: getRegion('messages') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+        <!-- ko foreach: getRegion('before') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!-- /ko -->
+        <div class="block-content" aria-labelledby="block-customer-login-heading">
+            <form class="form form-login"
+                  method="post"
+                  data-bind="event: {submit: login}, attr: {id: attr: {id: prefixElementHtml + 'login-form'}">
+
+                <!-- ko if: isMessage() -->
+                <div class="message-error error message" data-ui-id="message-error">
+                    <div data-bind="text: messageLogin"></div>
+                </div>
+                <!-- /ko -->
+
+                <div class="fieldset login" data-bind="attr: {'data-hasrequired': $t('* Required Fields')}">
+                    <div class="field email required">
+                        <label class="label" data-bind="attr: {id: prefixElementHtml + 'email'}"><span
+                                data-bind="i18n: 'Email Address'"></span></label>
+                        <div class="control">
+                            <input name="username"
+                                   type="email"
+                                   class="input-text"
+                                   data-bind="attr: {autocomplete: autocomplete, id: prefixElementHtml + 'email'}"
+                                   data-validate="{required:true, 'validate-email':true}">
+                        </div>
+                    </div>
+                    <div class="field password required">
+                        <label data-bind="attr: {id: prefixElementHtml + 'pass'}" class="label"><span
+                                data-bind="i18n: 'Password'"></span></label>
+                        <div class="control">
+                            <input name="password"
+                                   type="password"
+                                   class="input-text"
+                                   id="pass"
+                                   data-bind="attr: {autocomplete: autocomplete, id: prefixElementHtml + 'pass'}"
+                                   data-validate="{required:true}">
+                        </div>
+                    </div>
+                    <!-- ko foreach: getRegion('additional-login-form-fields') -->
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                    <!-- /ko -->
+                </div>
+                <div class="actions-toolbar">
+                    <input name="context" type="hidden" value="checkout"/>
+                    <div class="primary">
+                        <br>
+                        <button type="submit" class="action login primary" name="send" id="send2">
+                            <span data-bind="i18n: 'Sign In'"></span>
+                        </button>
+                    </div>
+                    <div class="secondary">
+                        <a class="action remind" data-bind="attr: {href: createNewAccount}">
+                            <span data-bind="i18n: 'Create a New Account.'"></span>
+                        </a>
+                        <br>
+                        <a class="action remind" data-bind="attr: {href: forgotPasswordUrl}">
+                            <span data-bind="i18n: 'Forgot Your Password?'"></span>
+                        </a>
+                    </div>
+                </div>
+                <hr>
+            </form>
+        </div>
+    </div>
+    <div class="block block-social-login"
+         data-bind="attr: {'data-label': $t('or')}">
+        <div class="block-title">
+            <strong id="block-social-login-heading"
+                    role="heading"
+                    aria-level="2"
+                    data-bind="i18n: 'Sign In with your social account'"></strong>
+        </div>
+        <div class="block-social-login-content" style="max-width: 325px" aria-labelledby="block-social-account-heading">
+            <!-- ko if: isTwitterEnabled -->
+            <div class="modal-twitter" style="background-position: left; width: calc(100% - 70px); padding-bottom: calc(0.23 * (100% - 140px));" data-bind="click : getTwitterUrl"></div>
+            <div class="divider"></div>
+            <!-- /ko -->
+            <!-- ko if: isFacebookEnabled -->
+            <div class="modal-facebook" style="background-position: left; width: calc(100% - 70px); padding-bottom: calc(0.23 * (100% - 140px));" data-bind="click : getFacebookUrl"></div>
+            <div class="divider"></div>
+            <!-- /ko -->
+            <!-- ko if: isGoogleEnabled -->
+            <div class="modal-google" style="background-position: left; width: calc(100% - 70px); padding-bottom: calc(0.23 * (100% - 140px));" data-bind="click : getGoogleUrl"></div>
+            <div class="divider"></div>
+            <!-- /ko -->
+            <!-- ko if: isAmazonEnabled -->
+            <div class="modal-amazon" style="background-position: left; width: calc(100% - 70px); padding-bottom: calc(0.23 * (100% - 140px));" data-bind="click : getAmazonUrl"></div>
+            <div class="divider"></div>
+            <!-- /ko -->
+            <!-- ko if: isLinkedInEnabled -->
+            <div class="modal-linkedin" style="background-position: left; width: calc(100% - 70px); padding-bottom: calc(0.23 * (100% - 140px));" data-bind="click : getLinkedInUrl"></div>
+            <div class="divider"></div>
+            <!-- /ko -->
+            <!-- ko if: isInstagramEnabled -->
+            <div class="modal-instagram" style="background-position: left; width: calc(100% - 70px); padding-bottom: calc(0.23 * (100% - 140px));" data-bind="click : getInstagramUrl"></div>
+            <div class="divider"></div>
+            <!-- /ko -->
+            <!-- ko if: isPinterestEnabled -->
+            <div class="modal-pinterest" style="background-position: left; width: calc(100% - 70px); padding-bottom: calc(0.23 * (100% - 140px));" data-bind="click : getPinterestUrl"></div>
+            <div class="divider"></div>
+            <!-- /ko -->
+            <!-- ko if: isRedditEnabled -->
+            <div class="modal-reddit" style="background-position: left; width: calc(100% - 70px); padding-bottom: calc(0.23 * (100% - 140px));" data-bind="click : getRedditUrl"></div>
+            <div class="divider"></div>
+            <!-- /ko -->
+            <!-- ko if: isLineEnabled -->
+            <div class="modal-line" style="background-position: left; width: calc(100% - 70px); padding-bottom: calc(0.23 * (100% - 140px));" data-bind="click : getLineUrl"></div>
+            <div class="divider"></div>
+            <!-- /ko -->
+
+        </div>
+        <hr>
+    </div>
+</div>
+<!--/ko-->
